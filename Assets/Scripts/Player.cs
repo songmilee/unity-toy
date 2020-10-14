@@ -50,11 +50,14 @@ public class Player : MonoBehaviour
         if (other.tag == "Item")
         {
             itemScore += 1;
+            manager.SetUserItemText(itemScore);
             audio.Play();
             other.gameObject.SetActive(false);
         }
         else if (other.tag == "Goal")
         {
+            manager.SetUserItemText(0);
+            
             if (itemScore != manager.totalItemCnt)
             {
                 //Restart
@@ -63,8 +66,12 @@ public class Player : MonoBehaviour
             else
             {
                 manager.gameStage += 1;
+
                 //Game Clear!
-                SceneManager.LoadScene("Scenes/Level" + manager.gameStage);
+                if (manager.gameStage > 2)
+                    SceneManager.LoadScene("Scenes/Main");
+                else
+                    SceneManager.LoadScene("Scenes/Level" + manager.gameStage);
             }
         }
     }
