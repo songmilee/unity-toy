@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.name == "Floor")
+        if (other.gameObject.tag == "Floor")
             isJump = false;
     }
     
